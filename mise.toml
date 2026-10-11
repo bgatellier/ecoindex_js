@@ -25,6 +25,11 @@ run = "pnpm tsc -p tsconfig.esm.json"
 description = "Run TypeScript type checking"
 run = [{ task = "build:esm", args = ["--declaration", "--emitDeclarationOnly", "--outDir", "./dist"]}]
 
+[tasks.publish]
+description = "Publish the package"
+depends = ["build"]
+run = "pnpm publish --access public"
+
 [tasks."test:unit"]
 description = "Run unit tests (watch)"
 run = "pnpm vitest"
