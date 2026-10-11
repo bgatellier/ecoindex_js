@@ -1,5 +1,19 @@
-.idea
+# Logs
+logs
+*.log
+npm-debug.log*
 
+dist
 node_modules
-yarn-error.log
 
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.iml
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

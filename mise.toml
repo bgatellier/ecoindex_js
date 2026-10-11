@@ -9,9 +9,9 @@ pnpm = "12"
 [deps.npm]
 auto = true
 
-[tasks.build]
-description = "Build"
-run = "pnpm build"
+[tasks."build:cjs"]
+description = "Build CJS only"
+run = "pnpm tsc -p tsconfig.cjs.json"
 
 [tasks.compile]
 description = "Run TypeScript type checking without emitting files"

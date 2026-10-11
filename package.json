@@ -1,7 +1,6 @@
 {
   "name": "ecoindex",
   "version": "2.0.0",
-  "main": "index.js",
   "repository": "https://github.com/cnumr/ecoindex_js.git",
   "author": "tsecher <me@thomas-secher.fr>",
   "license": "CC-BY-NC-ND-3.0",
@@ -21,8 +20,7 @@
   },
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
+      "require": "./dist/cjs/index.js"
     }
   }
 }
