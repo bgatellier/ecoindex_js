@@ -1,0 +1,22 @@
+[settings]
+experimental = true
+lockfile = true
+
+[tools]
+node = "22"
+pnpm = "12"
+
+[deps.npm]
+auto = true
+
+[tasks.build]
+description = "Build"
+run = "pnpm build"
+
+[tasks.compile]
+description = "Run TypeScript type checking without emitting files"
+run = "pnpm tsc --noEmit"
+
+[tasks."test:unit"]
+description = "Run unit tests (watch)"
+run = "pnpm vitest"
