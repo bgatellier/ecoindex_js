@@ -21,6 +21,10 @@ run = "pnpm tsc -p tsconfig.cjs.json"
 description = "Build ESM only"
 run = "pnpm tsc -p tsconfig.esm.json"
 
+[tasks.check]
+description = "Check source code lint and format"
+run = "pnpm biome check"
+
 [tasks.compile]
 description = "Run TypeScript type checking"
 run = [{ task = "build:esm", args = ["--declaration", "--emitDeclarationOnly", "--outDir", "./dist"]}]
