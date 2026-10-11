@@ -6,7 +6,7 @@ It is based on the work of the association [GreenIT](https://www.greenit.fr/)
 and the web extension [GreenIT-Analysis](https://github.com/cnumr/GreenIT-Analysis/).
 
 The sources are based on the initial Web Extension ([https://github.com/cnumr/GreenIT-Analysis/blob/master/script/ecoIndex.js](https://github.com/cnumr/GreenIT-Analysis/blob/master/script/ecoIndex.js)) code.
-The calculation method is described on here : ([EcoIndex pouplation](https://www.ecoindex.fr/comment-ca-marche/))
+The calculation method is described on here : ([How does it work?](https://www.ecoindex.fr/en/how-it-works/))
 
 # Install
 Install package with npm  
@@ -46,13 +46,6 @@ import {computeEcoIndex, getEcoIndexGrade} from "ecoindex";
 
 const ecoIndex = computeEcoIndex(dom, req, size);
 const grade = getEcoIndexGrade(ecoIndex);
-```
-
-## Testing
-We use mocha for testing.
-You can launch tests using this command : 
-```
-npm test
 ```
 
 ## [License](LICENSE)
