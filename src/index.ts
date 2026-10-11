@@ -1,7 +1,5 @@
 import reference from 'ecoindex_reference/ecoindex_reference.json';
 
-type Quantile = { dom: number[]; size: number[]; req: number[]; }
-
 /**
  * Return grades list.
  */
@@ -12,7 +10,7 @@ export function getEcoIndexGradesList() {
 /**
  * Return quantiles list.
  */
-export function getQuantiles(): Quantile {
+export function getQuantiles(): { dom: number[]; size: number[]; req: number[]; } {
   return {
     dom: reference.quantiles.dom_size,
     req: reference.quantiles.nb_request,

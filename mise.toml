@@ -11,7 +11,7 @@ auto = true
 
 [tasks."build"]
 description = "Build"
-run = [{ tasks = ["build:cjs", "build:esm"] }]
+run = [{ tasks = ["build:cjs", "build:esm", "compile"] }]
 
 [tasks."build:cjs"]
 description = "Build CJS only"
@@ -22,8 +22,8 @@ description = "Build ESM only"
 run = "pnpm tsc -p tsconfig.esm.json"
 
 [tasks.compile]
-description = "Run TypeScript type checking without emitting files"
-run = "pnpm tsc --noEmit"
+description = "Run TypeScript type checking"
+run = [{ task = "build:esm", args = ["--declaration", "--emitDeclarationOnly", "--outDir", "./dist"]}]
 
 [tasks."test:unit"]
 description = "Run unit tests (watch)"
