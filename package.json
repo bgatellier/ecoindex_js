@@ -4,6 +4,9 @@
   "repository": "https://github.com/cnumr/ecoindex_js.git",
   "author": "tsecher <me@thomas-secher.fr>",
   "license": "CC-BY-NC-ND-3.0",
+  "contributors": [
+    "Bastien Gatellier <contact@bgatellier.fr>"
+  ],
   "type": "module",
   "engines": {
     "node": ">=22"
