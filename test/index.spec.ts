@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "bun:test";
 import {
   computeEcoIndex,
   getEcoIndexGrade,
@@ -18,16 +18,20 @@ describe("Compute ecoIndex", async () => {
     const quantiles = getQuantiles();
     const quantilesRange = 100 / (quantiles.dom.length - 1);
 
-    for (const i in quantiles.dom) {
-      const ecoIndex = computeEcoIndex(
-        quantiles.dom[i],
-        quantiles.req[i],
-        quantiles.size[i],
-      );
-      expect(ecoIndex)
-        .to.be.a("number")
-        .to.be.eq(100 - i * quantilesRange);
-    }
+    quantiles.dom.forEach((domQuantile, i) => {
+      const reqQuantile = quantiles.req[i];
+      const sizeQuantile = quantiles.size[i];
+
+      if (reqQuantile !== undefined && sizeQuantile !== undefined) {
+        const ecoIndex = computeEcoIndex(
+          domQuantile,
+          reqQuantile,
+          sizeQuantile,
+        );
+
+        expect(ecoIndex).toBe(100 - i * quantilesRange);
+      }
+    });
   });
 });
 
@@ -52,19 +56,19 @@ describe("Compute ecoIndex", () => {
       { value: 10, grade: "G" },
     ].forEach((fixture) => {
       const grade = getEcoIndexGrade(fixture.value);
-      expect(grade).to.be.a("string").to.be.eq(fixture.grade);
+      expect(grade).toBe(fixture.grade);
     });
   });
 
   // Invalid negative ecoIndex value.
   it(`Should return false for negative ecoIndex`, () => {
     const grade = getEcoIndexGrade(-1);
-    expect(grade).to.be.a("boolean").to.be.eq(false);
+    expect(grade).toBe(false);
   });
 
   // Invalid more than 100 ecoIndex value.
   it(`Should return false for ecoIndex greater than 100 `, () => {
     const grade = getEcoIndexGrade(110);
-    expect(grade).to.be.a("boolean").to.be.eq(false);
+    expect(grade).toBe(false);
   });
 });

@@ -3,37 +3,44 @@ experimental = true
 lockfile = true
 
 [tools]
-node = "22"
-pnpm = "12"
+bun = "1.4.4"
 
-[deps.npm]
+[deps.bun]
 auto = true
 
 [tasks."build"]
-description = "Build"
-run = [{ tasks = ["build:cjs", "build:esm", "compile"] }]
+description = "Build ESM and CJS"
+run = [{ tasks = ["build:esm", "build:cjs", "compile"] }]
 
-[tasks."build:cjs"]
-description = "Build CJS only"
-run = "pnpm tsc -p tsconfig.cjs.json"
+[tasks."build:common"]
+hide = true
+run = "bun build ./src/index.ts --production"
 
 [tasks."build:esm"]
 description = "Build ESM only"
-run = "pnpm tsc -p tsconfig.esm.json"
+run = [ { task = "build:common", args = ["--outfile", "./dist/index.js", "--format", "esm"] } ]
+
+[tasks."build:cjs"]
+description = "Build CJS only"
+run = [ { task = "build:common", args = ["--outfile", "./dist/index.cjs", "--format", "cjs"] } ]
+
+[tasks.typecheck]
+description = "Check types"
+run = "bun check"
 
 [tasks.check]
 description = "Check source code lint and format"
-run = "pnpm biome check"
+run = "bun run biome check"
 
 [tasks.compile]
-description = "Run TypeScript type checking"
-run = [{ task = "build:esm", args = ["--declaration", "--emitDeclarationOnly", "--outDir", "./dist"]}]
+description = "Generate TypeScript declarations"
+run = "bun run tsc"
 
 [tasks.publish]
 description = "Publish the package"
 depends = ["build"]
-run = "pnpm publish --access public"
+run = "bun publish --access public"
 
 [tasks."test:unit"]
 description = "Run unit tests (watch)"
-run = "pnpm vitest"
+run = "bun test"

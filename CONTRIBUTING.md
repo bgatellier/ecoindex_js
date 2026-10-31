@@ -2,7 +2,6 @@
 
 ## Testing
 
-We use vitest for testing.
 You can launch tests using this command:
 
 ```

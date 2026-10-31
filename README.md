@@ -9,40 +9,47 @@ The sources are based on the initial Web Extension ([https://github.com/cnumr/Gr
 The calculation method is described on here : ([How does it work?](https://www.ecoindex.fr/en/how-it-works/))
 
 # Install
+
 Install package with npm  
 `npm install ecoindex`
 
 # How to use ?
 
 ## computeEcoIndex(dom, req, size)
+
 `computeEcoIndex` returns the ecoIndex according to 3 parameters.
 
 ### Parameters
-| Name | Type | Description  |
-| --- | --- |--------------|
-| dom | number | Number of DOM elements | 
-| req | number | Number of requests | 
-| size | number | Size of response (Ko) | 
+
+| Name | Type   | Description            |
+| ---- | ------ | ---------------------- |
+| dom  | number | Number of DOM elements |
+| req  | number | Number of requests     |
+| size | number | Size of response (Ko)  |
 
 ### Example
+
 ```javascript
-import {computeEcoIndex} from "ecoindex";
+import { computeEcoIndex } from "ecoindex";
 
 const ecoIndex = computeEcoIndex(dom, req, size);
 ```
 
 
 ## getEcoIndexGrade(ecoIndex)
+
 `getEcoIndexGrade` returns the grade according to the ecoIndex value.
 
 ### Parameters
-| Name    | Type | Description        |
-|---------| --- |--------------------|
-| ecoIndex | number | The EcoIndex value | 
+
+| Name     | Type   | Description        |
+| -------- | ------ | ------------------ |
+| ecoIndex | number | The EcoIndex value |
 
 ### Example
+
 ```javascript
-import {computeEcoIndex, getEcoIndexGrade} from "ecoindex";
+import { computeEcoIndex, getEcoIndexGrade } from "ecoindex";
 
 const ecoIndex = computeEcoIndex(dom, req, size);
 const grade = getEcoIndexGrade(ecoIndex);
@@ -51,5 +58,6 @@ const grade = getEcoIndexGrade(ecoIndex);
 ## [License](LICENSE)
 
 ## Disclaimer
+
 The LCA values used by ecoindex to evaluate environmental impacts are not under free license - ©Frédéric Bordage  
 Please also refer to the mentions provided in the code files for specifics on the IP regime.

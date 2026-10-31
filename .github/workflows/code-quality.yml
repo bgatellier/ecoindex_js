@@ -13,7 +13,7 @@ jobs:
           experimental: true
 
       - name: Check source code lint & format
-        run: mise check
+        run: mise run check
   test:
     runs-on: ubuntu-latest
     steps:
@@ -26,4 +26,4 @@ jobs:
           experimental: true
 
       - name: Unit tests
-        run: mise test:unit --run
+        run: mise run test:unit

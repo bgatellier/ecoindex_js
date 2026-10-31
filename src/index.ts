@@ -1,4 +1,4 @@
-import reference from "ecoindex_reference/ecoindex_reference.json";
+import reference from "ecoindex_reference" with { type: "json" };
 
 /**
  * Return grades list.
@@ -51,10 +51,12 @@ export function computeEcoIndex(
  */
 export function computeQuantile(quantiles: number[], value: number): number {
   for (let i = 1; i < quantiles.length; i++) {
-    if (value < quantiles[i])
-      return (
-        i - 1 + (value - quantiles[i - 1]) / (quantiles[i] - quantiles[i - 1])
-      );
+    const previous = quantiles[i - 1];
+    const current = quantiles[i];
+    if (previous === undefined || current === undefined) continue;
+    if (value < current) {
+      return i - 1 + (value - previous) / (current - previous);
+    }
   }
   return quantiles.length - 1;
 }
@@ -70,15 +72,12 @@ export function getEcoIndexGrade(ecoIndex: number): string | false {
   }
 
   const ecoIndexGrades = getEcoIndexGradesList();
-  let name: string | false = false,
-    i = 0;
-  do {
-    if (ecoIndex > ecoIndexGrades[i].value) {
-      name = ecoIndexGrades[i].grade;
+  for (const grade of ecoIndexGrades) {
+    if (ecoIndex > grade.value) {
+      return grade.grade;
     }
-  } while (name === false && i++ < ecoIndexGrades.length - 1);
-
-  return name;
+  }
+  return false;
 }
 
 /**

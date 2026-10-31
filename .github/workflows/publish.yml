@@ -15,6 +15,6 @@ jobs:
           experimental: true
 
       - name: Publish
-        run: mise publish
+        run: mise run publish
         env:
-          pnpm_config_//registry.npmjs.org/:_authToken: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
